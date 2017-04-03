@@ -97,7 +97,7 @@
           width: 150,
           padding: 0,
           backgroundColor: "#FFFFFF",
-          webkitFilter: "drop-shadow(0px 0px 5px #666666)",
+          WebkitFilter: "drop-shadow(0px 0px 5px #666666)",
           filter: "drop-shadow(0px 0px 5px #666666)"
         };
 

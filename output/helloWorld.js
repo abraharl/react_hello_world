@@ -9507,7 +9507,7 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(
     Buttonify,
     { behavior: "Submit" },
-    "Send Data"
+    "Click Me"
   )
 ), document.querySelector("#button"));
 
@@ -9619,11 +9619,7 @@ var ColorCard = _react2.default.createClass({
   }
 });
 
-_reactDom2.default.render(_react2.default.createElement(
-  "div",
-  null,
-  _react2.default.createElement(ColorCard, { color: "#FFA737" })
-), document.querySelector("#colorCard"));
+_reactDom2.default.render(_react2.default.createElement(ColorCard, { color: "#FFA737" }), document.querySelector("#colorCard"));
 
 //Transitive properties
 var Display = _react2.default.createClass({
@@ -9670,11 +9666,56 @@ var Shirt = _react2.default.createClass({
   }
 });
 
-_reactDom2.default.render(_react2.default.createElement(
-  "div",
-  null,
-  _react2.default.createElement(Shirt, { color: "blue", numb: "3", size: "XL" })
-), document.querySelector('#transProperty'));
+_reactDom2.default.render(_react2.default.createElement(Shirt, { color: "blue", numb: "3", size: "XL" }), document.querySelector('#transProperty'));
+
+//Lightning Counter
+var LightningCounter = _react2.default.createClass({
+  displayName: "LightningCounter",
+
+  getInitialState: function getInitialState() {
+    return {
+      strikes: 0
+    };
+  },
+  render: function render() {
+    return _react2.default.createElement(
+      "h1",
+      null,
+      this.state.strikes
+    );
+  },
+  componentDidMount: function componentDidMount() {
+    setInterval(this.timerTick, 1000);
+  },
+  timerTick: function timerTick() {
+    this.setState({
+      strikes: this.state.strikes + 100
+    });
+  }
+});
+
+var LightningCountDisplay = _react2.default.createClass({
+  displayName: "LightningCountDisplay",
+
+  render: function render() {
+    var style = {
+      width: 250,
+      textAlign: "center",
+      backgroundColor: "black",
+      padding: 40,
+      fontFamily: "sans-serif",
+      color: "#999999",
+      borderRadious: 10
+    };
+    return _react2.default.createElement(
+      "div",
+      { style: style },
+      _react2.default.createElement(LightningCounter, null)
+    );
+  }
+});
+
+_reactDom2.default.render(_react2.default.createElement(LightningCountDisplay, null), document.querySelector('#lightning'));
 
 /***/ }),
 /* 82 */

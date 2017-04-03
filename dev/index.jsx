@@ -26,7 +26,7 @@
 
     ReactDOM.render(
       <div>
-        <Buttonify behavior="Submit">Send Data</Buttonify>
+        <Buttonify behavior="Submit">Click Me</Buttonify>
       </div>,
       document.querySelector("#button")
     );
@@ -111,9 +111,7 @@
     });
 
     ReactDOM.render(
-      <div>
-        <ColorCard color="#FFA737"/>
-      </div>,
+      <ColorCard color="#FFA737"/>,
       document.querySelector("#colorCard")
     );
 
@@ -146,8 +144,52 @@
     });
 
     ReactDOM.render(
-      <div>
-        <Shirt color="blue" numb="3" size="XL"></Shirt>
-      </div>,
+      <Shirt color="blue" numb="3" size="XL"></Shirt>,
       document.querySelector('#transProperty')
     );
+
+    //Lightning Counter
+    var LightningCounter = React.createClass({
+      getInitialState: function() {
+        return {
+          strikes: 0
+        }
+      },
+      render: function() {
+        return (
+          <h1>{this.state.strikes}</h1>
+        );
+      },
+      componentDidMount: function() {
+        setInterval(this.timerTick, 1000);
+      },
+      timerTick: function() {
+        this.setState({
+          strikes: this.state.strikes + 100
+        });
+      }
+    });
+
+    var LightningCountDisplay = React.createClass({
+      render: function() {
+        var style = {
+          width: 250,
+          textAlign: "center",
+          backgroundColor: "black",
+          padding: 40,
+          fontFamily: "sans-serif",
+          color: "#999999",
+          borderRadious: 10
+        };
+        return (
+          <div style={style}>
+            <LightningCounter/>
+          </div>
+        );
+      }
+    });
+  
+  ReactDOM.render(
+    <LightningCountDisplay/>,
+    document.querySelector('#lightning')
+  );

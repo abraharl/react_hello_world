@@ -1,12 +1,19 @@
     import React from "react";
     import ReactDOM from "react-dom";
 
+    //Hello World
     var HelloWorld = React.createClass({
       render: function() {
         return (<p>Hello {this.props.greetTarget}!</p>);
       }
     });
 
+    ReactDOM.render(
+      <HelloWorld greetTarget="Lee"/>,
+      document.querySelector("#container")
+    );
+
+    //Button
     var Buttonify = React.createClass({
       render: function() {
         return (
@@ -17,7 +24,15 @@
       }
     });
 
-    var Letter = React.createClass({
+    ReactDOM.render(
+      <div>
+        <Buttonify behavior="Submit">Send Data</Buttonify>
+      </div>,
+      document.querySelector("#button")
+    );
+
+   //Letters 
+   var Letter = React.createClass({
       render: function(){
         var letterStyle = {
             padding: "10px",
@@ -35,6 +50,18 @@
       }
     });
 
+    ReactDOM.render(
+      <div>
+        <Letter bgcolor="#58B3FF">A</Letter>
+        <Letter bgcolor="#FF605F">E</Letter>
+        <Letter bgcolor="#FFD52E">I</Letter>
+        <Letter bgcolor="#49DD8E">O</Letter>
+        <Letter bgcolor="#AE99FF">U</Letter>
+      </div>,
+      document.querySelector('#vowels')
+    );
+
+    //Color card
     var ColorSwatch = React.createClass({
       render: function(){
         var swatchStyle = {
@@ -84,32 +111,43 @@
     });
 
     ReactDOM.render(
-      <HelloWorld greetTarget="Lee"/>,
-      document.querySelector("#container")
-    );
-
-    ReactDOM.render(
-      <div>
-        <Buttonify behavior="Submit">Send Data</Buttonify>
-      </div>,
-      document.querySelector("#button")
-    );
-
-
-    ReactDOM.render(
-      <div>
-        <Letter bgcolor="#58B3FF">A</Letter>
-        <Letter bgcolor="#FF605F">E</Letter>
-        <Letter bgcolor="#FFD52E">I</Letter>
-        <Letter bgcolor="#49DD8E">O</Letter>
-        <Letter bgcolor="#AE99FF">U</Letter>
-      </div>,
-      document.querySelector('#vowels')
-    );
-
-    ReactDOM.render(
       <div>
         <ColorCard color="#FFA737"/>
       </div>,
       document.querySelector("#colorCard")
+    );
+
+
+    //Transitive properties
+    var Display = React.createClass({
+      render: function() {
+        var style = {
+          border: "dotted 1px #000000"
+        };
+        return(
+          <div style={style}>
+            <p>{this.props.color}</p>
+            <p>{this.props.numb}</p>
+            <p>{this.props.size}</p>
+          </div>
+        );
+      }
+    });
+
+    var Label =  React.createClass({
+      render: function() {
+        return(<Display {...this.props}/>);
+      }
+    }); 
+    var Shirt = React.createClass({
+      render: function() {
+        return(<Label {...this.props}/>);
+      }
+    });
+
+    ReactDOM.render(
+      <div>
+        <Shirt color="blue" numb="3" size="XL"></Shirt>
+      </div>,
+      document.querySelector('#transProperty')
     );

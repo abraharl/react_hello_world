@@ -9467,6 +9467,7 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//Hello World
 var HelloWorld = _react2.default.createClass({
   displayName: "HelloWorld",
 
@@ -9481,6 +9482,9 @@ var HelloWorld = _react2.default.createClass({
   }
 });
 
+_reactDom2.default.render(_react2.default.createElement(HelloWorld, { greetTarget: "Lee" }), document.querySelector("#container"));
+
+//Button
 var Buttonify = _react2.default.createClass({
   displayName: "Buttonify",
 
@@ -9497,6 +9501,17 @@ var Buttonify = _react2.default.createClass({
   }
 });
 
+_reactDom2.default.render(_react2.default.createElement(
+  "div",
+  null,
+  _react2.default.createElement(
+    Buttonify,
+    { behavior: "Submit" },
+    "Send Data"
+  )
+), document.querySelector("#button"));
+
+//Letters 
 var Letter = _react2.default.createClass({
   displayName: "Letter",
 
@@ -9519,6 +9534,37 @@ var Letter = _react2.default.createClass({
   }
 });
 
+_reactDom2.default.render(_react2.default.createElement(
+  "div",
+  null,
+  _react2.default.createElement(
+    Letter,
+    { bgcolor: "#58B3FF" },
+    "A"
+  ),
+  _react2.default.createElement(
+    Letter,
+    { bgcolor: "#FF605F" },
+    "E"
+  ),
+  _react2.default.createElement(
+    Letter,
+    { bgcolor: "#FFD52E" },
+    "I"
+  ),
+  _react2.default.createElement(
+    Letter,
+    { bgcolor: "#49DD8E" },
+    "O"
+  ),
+  _react2.default.createElement(
+    Letter,
+    { bgcolor: "#AE99FF" },
+    "U"
+  )
+), document.querySelector('#vowels'));
+
+//Color card
 var ColorSwatch = _react2.default.createClass({
   displayName: "ColorSwatch",
 
@@ -9573,53 +9619,62 @@ var ColorCard = _react2.default.createClass({
   }
 });
 
-_reactDom2.default.render(_react2.default.createElement(HelloWorld, { greetTarget: "Lee" }), document.querySelector("#container"));
-
-_reactDom2.default.render(_react2.default.createElement(
-  "div",
-  null,
-  _react2.default.createElement(
-    Buttonify,
-    { behavior: "Submit" },
-    "Send Data"
-  )
-), document.querySelector("#button"));
-
-_reactDom2.default.render(_react2.default.createElement(
-  "div",
-  null,
-  _react2.default.createElement(
-    Letter,
-    { bgcolor: "#58B3FF" },
-    "A"
-  ),
-  _react2.default.createElement(
-    Letter,
-    { bgcolor: "#FF605F" },
-    "E"
-  ),
-  _react2.default.createElement(
-    Letter,
-    { bgcolor: "#FFD52E" },
-    "I"
-  ),
-  _react2.default.createElement(
-    Letter,
-    { bgcolor: "#49DD8E" },
-    "O"
-  ),
-  _react2.default.createElement(
-    Letter,
-    { bgcolor: "#AE99FF" },
-    "U"
-  )
-), document.querySelector('#vowels'));
-
 _reactDom2.default.render(_react2.default.createElement(
   "div",
   null,
   _react2.default.createElement(ColorCard, { color: "#FFA737" })
 ), document.querySelector("#colorCard"));
+
+//Transitive properties
+var Display = _react2.default.createClass({
+  displayName: "Display",
+
+  render: function render() {
+    var style = {
+      border: "dotted 1px #000000"
+    };
+    return _react2.default.createElement(
+      "div",
+      { style: style },
+      _react2.default.createElement(
+        "p",
+        null,
+        this.props.color
+      ),
+      _react2.default.createElement(
+        "p",
+        null,
+        this.props.numb
+      ),
+      _react2.default.createElement(
+        "p",
+        null,
+        this.props.size
+      )
+    );
+  }
+});
+
+var Label = _react2.default.createClass({
+  displayName: "Label",
+
+  render: function render() {
+    return _react2.default.createElement(Display, this.props);
+  }
+});
+var Shirt = _react2.default.createClass({
+  displayName: "Shirt",
+
+  render: function render() {
+    return _react2.default.createElement(Label, this.props);
+  }
+});
+
+_reactDom2.default.render(_react2.default.createElement(
+  "div",
+  null,
+  _react2.default.createElement(Shirt, { color: "blue", numb: "3", size: "XL" })
+), document.querySelector('#transProperty'));
 
 /***/ }),
 /* 82 */

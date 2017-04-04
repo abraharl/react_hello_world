@@ -9717,6 +9717,130 @@ var LightningCountDisplay = _react2.default.createClass({
 
 _reactDom2.default.render(_react2.default.createElement(LightningCountDisplay, null), document.querySelector('#lightning'));
 
+//dynamic circles
+var Circle = _react2.default.createClass({
+  displayName: "Circle",
+
+  render: function render() {
+    var style = {
+      padding: 10,
+      margin: 20,
+      display: "inline-block",
+      backgroundColor: this.props.bgColor,
+      borderRadius: "50%",
+      width: 100,
+      height: 100
+    };
+
+    return _react2.default.createElement("div", { style: style });
+  }
+});
+
+function showCircles() {
+  var colors = ['#393E41', '#E94F37', '#1C89BF', '#A1D363', '#85FFC7', '#297373', '#FF8552', '#A40EFC'];
+  var circles = [];
+
+  for (var i = 0; i < colors.length; i++) {
+    circles.push(_react2.default.createElement(Circle, { key: i + colors[i], bgColor: colors[i] }));
+  }
+
+  return circles;
+};
+
+_reactDom2.default.render(_react2.default.createElement(
+  "div",
+  null,
+  showCircles()
+), document.querySelector('#dynamicCircles'));
+
+//Counter
+var Counter = _react2.default.createClass({
+  displayName: "Counter",
+
+  getInitialState: function getInitialState() {
+    return {
+      count: 0
+    };
+  },
+  render: function render() {
+    var backgroundStyle = {
+      padding: 50,
+      backgroundColor: "#FFC53A",
+      width: 250,
+      height: 100,
+      borderRaidus: 10,
+      textAlign: "center"
+    };
+
+    var buttonStyle = {
+      fontSize: "1em",
+      width: 30,
+      height: 30,
+      fontFamily: "sans-serif",
+      color: "#333333",
+      fontWeight: "bold",
+      lineHeight: "3px"
+    };
+
+    return _react2.default.createElement(
+      "div",
+      { style: backgroundStyle },
+      _react2.default.createElement(CounterDisplay, { display: this.state.count }),
+      _react2.default.createElement(PlusButton, { clickHandler: this.increase })
+    );
+  },
+  increase: function increase(e) {
+    var currentCount = this.state.count;
+
+    if (e.shiftKey) {
+      currentCount += 10;
+    } else {
+      currentCount += 1;
+    }
+
+    this.setState({
+      count: currentCount
+    });
+  }
+});
+
+var CounterDisplay = _react2.default.createClass({
+  displayName: "CounterDisplay",
+
+  render: function render() {
+    var textStyle = {
+      fontSize: 72,
+      fontFamily: "sans-serif",
+      color: "#333333",
+      fontWeight: "bold"
+    };
+
+    return _react2.default.createElement(
+      "div",
+      { style: textStyle },
+      this.props.display
+    );
+  }
+});
+
+var PlusButton = _react2.default.createClass({
+  displayName: "PlusButton",
+
+  render: function render() {
+    return _react2.default.createElement(
+      "button",
+      { onClick: this.props.clickHandler },
+      "+"
+    );
+  }
+});
+
+_reactDom2.default.render(_react2.default.createElement(
+  "div",
+  null,
+  _react2.default.createElement(Counter, null)
+), document.querySelector('#counter'));
+
 /***/ }),
 /* 82 */
 /***/ (function(module, exports, __webpack_require__) {

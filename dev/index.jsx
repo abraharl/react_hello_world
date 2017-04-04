@@ -307,3 +307,48 @@
       <div><Counter/></div>,
       document.querySelector('#counter')
     );
+
+    //Colorizer
+    var Colorizer = React.createClass({
+      getInitialState: function() {
+        return {
+          color: '',
+          bgColor: ''
+        };
+      },
+      render: function() {
+        var squareStyle = {
+          backgroundColor: this.state.bgColor
+        };
+
+        var self = this;
+
+        return (
+          <div className="colorArea">
+            <div style={squareStyle} className="colorSquare"></div>
+
+            <form onSubmit={this.setNewColor}>
+              <input onChange={this.colorValue} 
+                     placeholder="Enter a color Value" 
+                     ref={function(el){self._input = el;}}></input>
+              <button type="submit">go</button>
+            </form>
+          </div>
+        );
+      },
+      colorValue: function(e) {
+        this.setState({color: e.target.value});
+      },
+      setNewColor: function(e) {
+        this.setState({bgColor: this.state.color});
+        this._input.value = "";
+        this._input.focus();
+
+        e.preventDefault()
+      }
+    });
+
+    ReactDOM.render(
+      <Colorizer/>,
+      document.querySelector('#colorizer')
+    );

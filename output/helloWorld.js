@@ -9841,6 +9841,57 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(Counter, null)
 ), document.querySelector('#counter'));
 
+//Colorizer
+var Colorizer = _react2.default.createClass({
+  displayName: "Colorizer",
+
+  getInitialState: function getInitialState() {
+    return {
+      color: '',
+      bgColor: ''
+    };
+  },
+  render: function render() {
+    var squareStyle = {
+      backgroundColor: this.state.bgColor
+    };
+
+    var self = this;
+
+    return _react2.default.createElement(
+      "div",
+      { className: "colorArea" },
+      _react2.default.createElement("div", { style: squareStyle, className: "colorSquare" }),
+      _react2.default.createElement(
+        "form",
+        { onSubmit: this.setNewColor },
+        _react2.default.createElement("input", { onChange: this.colorValue,
+          placeholder: "Enter a color Value",
+          ref: function ref(el) {
+            self._input = el;
+          } }),
+        _react2.default.createElement(
+          "button",
+          { type: "submit" },
+          "go"
+        )
+      )
+    );
+  },
+  colorValue: function colorValue(e) {
+    this.setState({ color: e.target.value });
+  },
+  setNewColor: function setNewColor(e) {
+    this.setState({ bgColor: this.state.color });
+    this._input.value = "";
+    this._input.focus();
+
+    e.preventDefault();
+  }
+});
+
+_reactDom2.default.render(_react2.default.createElement(Colorizer, null), document.querySelector('#colorizer'));
+
 /***/ }),
 /* 82 */
 /***/ (function(module, exports, __webpack_require__) {

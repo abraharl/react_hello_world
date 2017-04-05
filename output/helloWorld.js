@@ -9757,12 +9757,24 @@ _reactDom2.default.render(_react2.default.createElement(
 var Counter = _react2.default.createClass({
   displayName: "Counter",
 
+  getDefaultProps: function getDefaultProps() {
+    console.log("Getting default properties for the counter.");
+  },
   getInitialState: function getInitialState() {
+    console.log("Getting intial state for the counter.");
     return {
       count: 0
     };
   },
+  shouldComponentUpdate: function shouldComponentUpdate() {
+    console.log("checking if the counter component should update.");
+    return true;
+  },
+  componentWillMount: function componentWillMount() {
+    console.log("The counter component is about to mount.");
+  },
   render: function render() {
+    console.log("counter did render");
     var backgroundStyle = {
       padding: 50,
       backgroundColor: "#FFC53A",
@@ -9788,6 +9800,12 @@ var Counter = _react2.default.createClass({
       _react2.default.createElement(CounterDisplay, { display: this.state.count }),
       _react2.default.createElement(PlusButton, { clickHandler: this.increase })
     );
+  },
+  componentDidMount: function componentDidMount() {
+    console.log("The counter component did mount.");
+  },
+  componentDidUpdate: function componentDidUpdate() {
+    console.log("The counter component did update");
   },
   increase: function increase(e) {
     var currentCount = this.state.count;

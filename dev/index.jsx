@@ -232,12 +232,24 @@
 
     //Counter
     var Counter = React.createClass({
+      getDefaultProps: function() {
+        console.log("Getting default properties for the counter.")
+      },
       getInitialState: function() {
+        console.log("Getting intial state for the counter.")
         return {
           count: 0
         };
       },
+      shouldComponentUpdate: function() {
+        console.log("checking if the counter component should update.")
+        return true;
+      },
+      componentWillMount: function() {
+        console.log("The counter component is about to mount.")
+      },
       render: function() {
+        console.log("counter did render");
         var backgroundStyle = {
           padding: 50,
           backgroundColor: "#FFC53A",
@@ -263,6 +275,12 @@
             <PlusButton clickHandler={this.increase}/>
           </div>
         );
+      },
+      componentDidMount: function() {
+        console.log("The counter component did mount.");
+      },
+      componentDidUpdate: function() {
+        console.log("The counter component did update");
       },
       increase: function(e) {
         var currentCount = this.state.count;
